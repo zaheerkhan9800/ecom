@@ -1,0 +1,21 @@
+body{
+	background-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6{
+	color: black;
+}
+
+p, span, small{
+	color: #888;
+}
+
+
+#box{
+
+	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 10px;
+	background-color: #F8F8F8!important;}
+

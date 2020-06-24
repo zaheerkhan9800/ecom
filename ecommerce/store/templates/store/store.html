@@ -1,0 +1,137 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<style>
+	.hvrbox,
+.hvrbox * {
+	box-sizing: border-box;
+}
+
+.hvrbox{
+position: relative;
+	width: 100%;
+	height: 200px;
+	overflow: hidden;
+	display: inline-block;
+	-webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+}
+.hvrbox img {
+	max-width: 100%;
+}
+.hvrbox .hvrbox-layer_bottom {
+	display: block;
+}
+.hvrbox .hvrbox-layer_top {
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	color: #fff;
+	padding: 15px;
+	-moz-transition: all 0.4s ease-in-out 0s;
+	-webkit-transition: all 0.4s ease-in-out 0s;
+	-ms-transition: all 0.4s ease-in-out 0s;
+	transition: all 0.4s ease-in-out 0s;
+}
+.hvrbox:hover .hvrbox-layer_top,
+.hvrbox.active .hvrbox-layer_top {
+	opacity: 1;
+}
+.hvrbox .hvrbox-text {
+	text-align: center;
+	font-size: 18px;
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-moz-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+.hvrbox .hvrbox-text_mobile {
+	font-size: 15px;
+	border-top: 1px solid rgb(179, 179, 179); /* for old browsers */
+	border-top: 1px solid rgba(179, 179, 179, 0.7);
+	margin-top: 5px;
+	padding-top: 2px;
+	display: none;
+}
+.hvrbox.active .hvrbox-text_mobile {
+	display: block;
+}
+</style>
+	<div class="row">
+		{% for product in products %}
+		<div class="col-lg-4">
+<div class="hvrbox">
+				<img class="thumbnail" src="{{product.imageURL}}" class="hvrbox-layer_bottom">
+    <div class="hvrbox-layer_top">
+		<div class="hvrbox-text">{{product.description|truncatewords:30}}</div>
+	</div>
+</div>
+			<div class="box-element product">
+				<h6><strong>{{product.name}}</strong></h6>
+				<hr>
+
+				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-primary add-btn update-cart">Add to Cart</button>
+
+				<a class="btn btn-outline-success" href="/slider/{{product.id}}">View</a>
+				<h4 style="display: inline-block; float: right"><strong>${{product.price}}</strong></h4>
+
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+<div class="mt-5 pt-5 pb-5 footer ">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-5 col-xs-12 about-company">
+      <h2>Ecom</h2>
+		<p class="pr-5 text-black"><span style="color:black"> This Website is Totally free for everyone out there.<br>Do share with anyone you want.</span></p>
+      <p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i class="fa fa-linkedin-square"></i></a></p>
+    </div>
+    <div class="col-lg-3 col-xs-12 links">
+      <h4 class="mt-lg-0 mt-sm-3">Links</h4>
+        <ul class="m-0 p-0">
+          <li>- <a href="/about">About Us</a></li>
+          <li>- <a href="/contactus">Contact Us</a></li>
+          <li>- <a href="#">Track Your Orders</a></li>
+          <li>- <a href="#">Accounts</a></li>
+          <li>- <a href="{% url 'register' %}">Signup</a></li>
+          <li>- <a href="{% url 'reset_password' %}">Reset Password</a></li>
+        </ul>
+    </div>
+    <div class="col-lg-4 col-xs-12 location">
+      <h4 class="mt-lg-0 mt-sm-4">Location</h4>
+		<p><span style="color:black">Kolkata,Salt Lake,West Bengal ,India</span></p>
+		<p class="mb-0"><i class="fa fa-phone mr-3"></i><span style="color:black">7908586419</span></p>
+		<p><i class="fa fa-envelope-o mr-3"></i><span style="color:black">zaheerkhan9800@gmail.com</span></p>
+    </div>
+  </div>
+
+<div class="col-md-2 footer-social animated fadeInDown">
+            	<h4>Follow Us</h4>
+            	<ul>
+                	<li><a href="#">Facebook</a></li>
+                	<li><a href="#">Twitter</a></li>
+                	<li><a href="https://www.instagram.com/zaheerkhan9800/" target="_blank">Instagram</a></li>
+
+                	<li><a href="#">Linkedin</a></li>
+                </ul>
+</div>
+    <div class="row mt-5">
+    <div class="col copyright">
+		<p class=""><small class="text-black-800-500">© 2020. All Rights Reserved. <a href="{% url 'store' %}">Nurture.com</small></a></p>
+    </div>
+  </div>
+</div>
+</div><br>
+{% endblock content %}
